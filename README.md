@@ -22,13 +22,3 @@
 </div>
 
 ###
-
-<h2 align="left">Pemilik Repository</h2>
-
-###
-
-<div align="left">
-  <img src="https://visitor-badge.laobi.icu/badge?page_id=MN.MN&"  />
-</div>
-
-###
