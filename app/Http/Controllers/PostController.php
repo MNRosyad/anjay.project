@@ -39,12 +39,17 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'title' => 'required|string|max:200',
+            'description' => 'required|string|max:2000'
+        ]);
+
         $post = new Post;
         $post->title = $request->input('title');
         $post->description = $request->input('description');
         $post->save();
         
-        return redirect('/posts')->with('success', 'Post Created');
+        return redirect('/posts')->with('success', 'Post Berhasil dibuat');
     }
 
     /**

@@ -14,7 +14,7 @@
             @method('DELETE')
             {{ csrf_field() }}
             <input type="hidden" name="id" value="{{ $posts->id }}"> <br />
-            <button type="submit" class="btn btn-danger">Delete Post</button>
+            <button type="submit" class="btn btn-danger" onclick="return confirm('Post akan dihapus')">Delete Post</button>
         </form>
     </div>
 </div>
