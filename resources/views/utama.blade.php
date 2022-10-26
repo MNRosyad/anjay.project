@@ -1,7 +1,7 @@
-@extends('layouts.navbar')
+@extends('layouts.app')
 
 @section('content')
-<div class="container mb-3 mt-3">
+<div class="container mb-4 mt-4">
     <div class="d-flex flex-row justify-content-center">
         <div class="bg-dark col-md-8 py-5 px-5 shadow rounded">
             <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
