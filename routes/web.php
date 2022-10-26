@@ -9,23 +9,14 @@ Route::get('/', function () {
 Route::get('/about', function () {
     return view('auth.about');
 });
-Route::get('/edukasi', function () {
-    return view('auth.edukasi');
-});
-Route::get('/projek', function () {
-    return view('auth.projek');
-});
-Route::get('/posts', function () {
-    return view('posts.index');
-});
 
 Route::resource(
     'posts',
     'App\Http\Controllers\PostController'
 );
 
-Auth::routes([
-    'reset' => false,
-]);
+Auth::routes();
 
-Route::get('/posts', [App\Http\Controllers\PostController::class, 'index'])->name('posts.index');
+Route::get('/posts', [App\Http\Controllers\PostController::class, 'index'])->name('index');
+Route::get('/projek', [App\Http\Controllers\PageController::class, 'education'])->name('education');
+Route::get('/edukasi', [App\Http\Controllers\PageController::class, 'projekt'])->name('projekt');
