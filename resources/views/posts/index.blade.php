@@ -1,7 +1,7 @@
-@extends('layouts.navbar')
+@extends('layouts.app')
 
 @section('content')
-<div class="jumbotron jumbotron-fluid">
+<div class="jumbotron jumbotron-fluid bg-dark bg-gradient">
     <div class="container text-bg-dark p-4">
         @if (\Session::has('success'))
         <div class="alert alert-success">
@@ -13,7 +13,19 @@
         </div>
         @endif
         <h1>Blog.dev</h1>
+        <div class="container text-bg-dark py-2">
+            @auth
+            <p>Selamat Datang, <b>{{ Auth::user()->name }}!</b></p>
+            <a class="btn btn-danger" href="{{ route('logout') }}">Logout</a>
+            @endauth
+            @guest
+            <a class="btn btn-primary" href="{{ route('login') }}">Login</a>
+            <a class="btn btn-info" href="{{ route('register') }}">Register</a>
+            @endguest
+        </div>
+        @auth
         <a href="{{ route('posts.create') }}">Create a New Post</a>
+        @endauth
         <hr>
         @if(count($posts) > 0)
         @foreach($posts as $post)

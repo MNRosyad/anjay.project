@@ -48,7 +48,7 @@ class PostController extends Controller
         $post->title = $request->input('title');
         $post->description = $request->input('description');
         $post->save();
-        
+
         return redirect('/posts')->with('success', 'Post Berhasil dibuat');
     }
 
@@ -111,5 +111,10 @@ class PostController extends Controller
         $post->delete();
 
         return redirect('posts')->with('success', 'Postingan Berhasil Dihapus');
+    }
+
+    public function __construct()
+    {
+        $this->middleware('auth',  ["except" => ["index", "show"]]);
     }
 }

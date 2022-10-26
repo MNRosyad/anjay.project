@@ -29,7 +29,7 @@
 
 </head>
 
-<body class="hold-transition layout-top-nav">
+<body class="bg-dark bg-gradient hold-transition layout-top-nav">
     <div class="wrapper">
 
         @include('layouts.header')
@@ -54,8 +54,6 @@
     <script src="{{ asset('lte/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset('lte/dist/js/adminlte.min.js') }}"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="{{ asset('lte/dist/js/demo.js') }}"></script>
 
 </body>
 

@@ -24,6 +24,8 @@ Route::resource(
     'App\Http\Controllers\PostController'
 );
 
-Auth::routes();
+Auth::routes([
+    'reset' => false,
+]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/posts', [App\Http\Controllers\PostController::class, 'index'])->name('posts.index');
