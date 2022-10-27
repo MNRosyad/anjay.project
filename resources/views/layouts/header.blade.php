@@ -3,7 +3,7 @@
   <div class="container">
     <a href="{{ url('/') }}" class="navbar-brand link-light">
       <img src="{{ asset('images/boost.gif') }}" alt="Projekt Web" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">{{ config('app.name') }} | {{ config('app.subtitle') }}</span>
+      <span class="brand-text font-weight-light">{{ config('app.name') }}</span>
     </a>
 
     <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -17,12 +17,15 @@
           <a class="nav-link link-light" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li> -->
         <li class="nav-item d-none d-sm-inline-block">
-          <a href="{{ url('/')}}" class="nav-link link-light">Home</a>
+          <a href="{{ url('/') }}" class="nav-link link-light">Home</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
           <a class="nav-link link-light" href="{{ url('/posts') }}">
             Blog Post
           </a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+          <a href="{{ url('/send-email') }}" class="nav-link link-light">Send Email</a>
         </li>
       </ul>
 
