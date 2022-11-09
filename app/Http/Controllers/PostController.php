@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use App\Models\Post;
 
@@ -41,12 +43,24 @@ class PostController extends Controller
     {
         $this->validate($request, [
             'title' => 'required|string|max:200',
-            'description' => 'required|string|max:2000'
+            'description' => 'required|string|max:2000',
+            'picture' => 'image|nullable|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
+
+        if ($request->hasFile('picture')) {
+            $filenameWithExt = $request->file('picture')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('picture')->getClientOriginalExtension();
+            $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+            $path = $request->file('picture')->storeAs('public/pictures', $fileNameToStore);
+        } else {
+            $fileNameToStore = 'noimage.jpg';
+        }
 
         $post = new Post;
         $post->title = $request->input('title');
         $post->description = $request->input('description');
+        $post->picture = $fileNameToStore;
         $post->save();
 
         return redirect('/posts')->with('success', 'Post Berhasil dibuat');
@@ -109,6 +123,7 @@ class PostController extends Controller
     {
         $post = Post::find($id);
         $post->delete();
+        File::delete('storage/pictures/' . $post->picture);
 
         return redirect('posts')->with('success', 'Postingan Berhasil Dihapus');
     }
