@@ -7,6 +7,7 @@
         <small>Tanggal: {{ $posts -> created_at }}</small>
         <hr>
         <p>{{ $posts -> description }}</p>
+        <img src="{{ asset('storage/pictures/'.$posts->picture) }}">
     </div>
     <div class="container text-bg-dark p-4">
         @auth

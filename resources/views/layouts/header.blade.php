@@ -77,7 +77,7 @@
               </form>
             </div>
           </li>
-          <li>
+          <!-- <li>
             <form class="form-inline ml-0 ml-md-3">
               <div class="input-group input-group-sm">
                 <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
@@ -88,7 +88,7 @@
                 </div>
               </div>
             </form>
-          </li>
+          </li> -->
           @endguest
         </ul>
     </div>
