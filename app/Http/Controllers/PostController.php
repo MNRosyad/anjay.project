@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use App\Models\Post;
@@ -51,8 +52,30 @@ class PostController extends Controller
             $filenameWithExt = $request->file('picture')->getClientOriginalName();
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('picture')->getClientOriginalExtension();
-            $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+
+            $basename = uniqid() . '_' . time();
+            $smallFilename = $basename . '_small.' . $extension;
+            $mediumFilename = $basename . '_medium.' . $extension;
+            $largeFilename = $basename . '_large.' . $extension;
+
+            $fileNameToStore = $basename . '.' . $extension;
             $path = $request->file('picture')->storeAs('public/pictures', $fileNameToStore);
+
+            $request->file('picture')->storeAs('public/pictures', $smallFilename);
+            $request->file('picture')->storeAs('public/pictures', $mediumFilename);
+            $request->file('picture')->storeAs('public/pictures', $largeFilename);
+
+            //small
+            $smallThumbnailPath = storage_path('app/public/pictures/' . $smallFilename);
+            $this->createThumbnail($smallThumbnailPath, 150, 93);
+            
+            //medium
+            $mediumThumbnailPath = storage_path('app/public/pictures/' . $mediumFilename);
+            $this->createThumbnail($mediumThumbnailPath, 300, 185);
+
+            //large
+            $largeThumbnailPath = storage_path('app/public/pictures/' . $largeFilename);
+            $this->createThumbnail($largeThumbnailPath, 550, 340);
         } else {
             $fileNameToStore = 'noimage.jpg';
         }
@@ -105,10 +128,33 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Post::where('id', $id)->update([
-            'title' => $request->input('title'),
-            'description' => $request->input('description')
+        $this->validate($request, [
+            'title' => 'required|string|max:200',
+            'description' => 'required|string|max:2000',
+            'picture' => 'image|nullable|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
+
+        if ($request->hasFile('picture')) {
+            $filenameWithExt = $request->file('picture')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('picture')->getClientOriginalExtension();
+
+            $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+            $path = $request->file('picture')->storeAs('public/pictures', $fileNameToStore);
+        } else {
+            $fileNameToStore = 'noimage.jpg';
+        }
+
+        $post = Post::find($id);
+        $post->title = $request->input('title');
+        $post->description = $request->input('description');
+        $post->picture = $fileNameToStore;
+        $post->save();
+
+        // Post::where('id', $id)->update([
+        //     'title' => $request->input('title'),
+        //     'description' => $request->input('description')
+        // ]);
 
         return redirect('/posts')->with('success', 'Postingan Berhasil Diubah');
     }
