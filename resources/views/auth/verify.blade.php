@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container container mb-4 mt-4">
+<div class="container container mb-4 mt-4" style="height: 100vh;">
     <div class="d-flex justify-content-center">
         <div class="bg-dark col-md-8 px-5 shadow rounded">
             <div class="container mt-5 mb-5 text-bg-dark">

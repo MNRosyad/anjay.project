@@ -20,9 +20,10 @@
           <a href="{{ url('/') }}" class="nav-link link-light">Home</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-          <a class="nav-link link-light" href="{{ url('/posts') }}">
-            Blog Post
-          </a>
+          <a class="nav-link link-light" href="{{ url('/posts') }}">Blog Post</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+          <a class="nav-link link-light" href="{{ url('/galeri') }}">Gallery</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
           <a href="{{ url('/send-email') }}" class="nav-link link-light">Send Email</a>

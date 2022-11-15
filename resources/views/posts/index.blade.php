@@ -32,6 +32,9 @@
         <div class="well m-3">
             <h3><a href="/posts/{{$post->id}}">{{$post->title}}</a></h3>
             <small>Tanggal {{$post->created_at}}</small>
+            @if($post->picture != 'noimage.png')
+            <img src="{{ asset('storage/pictures/'.$post->picture) }}" style="width: 100%; height: 255px; object-fit: cover; border-radius: 20px">
+            @endif
         </div>
         @endforeach
 

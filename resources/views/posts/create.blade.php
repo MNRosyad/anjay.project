@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="jumbotron jumbotron-fluid bg-dark bg-gradient">
+<div class="jumbotron jumbotron-fluid bg-dark bg-gradient" style="height: 100vh;">
     <div class="container text-bg-dark p-4">
         <h1>Post a New Blog</h1>
         <hr>

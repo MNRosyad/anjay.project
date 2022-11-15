@@ -1,13 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="jumbotron jumbotron-fluid bg-dark bg-gradient">
+<div class="jumbotron jumbotron-fluid bg-dark bg-gradient" style="height: 100vh;">
     <div class="container text-bg-dark p-4">
         <h1>{{ $posts -> title }}</h1>
         <small>Tanggal: {{ $posts -> created_at }}</small>
         <hr>
         <p>{{ $posts -> description }}</p>
+        @if($posts->picture != 'noimage.png')
         <img src="{{ asset('storage/pictures/'.$posts->picture) }}">
+        @endif
     </div>
     <div class="container text-bg-dark p-4">
         @auth
