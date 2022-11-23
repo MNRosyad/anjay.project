@@ -17,10 +17,12 @@ Route::get('/about', function () {
 });
 
 Route::resource(
-    'posts', 'App\Http\Controllers\PostController'
+    'posts',
+    'App\Http\Controllers\PostController'
 );
 Route::resource(
-    'gallery', 'App\Http\Controllers\GalleryController'
+    'gallery',
+    'App\Http\Controllers\GalleryController'
 );
 
 Auth::routes();
