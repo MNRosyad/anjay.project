@@ -63,6 +63,7 @@
             "pestphp/pest-plugin": true
         }
     },
+    "post-install-cmd": ["ln -sr storage/app/public public/storage"],
     "minimum-stability": "dev",
     "prefer-stable": true
 }
