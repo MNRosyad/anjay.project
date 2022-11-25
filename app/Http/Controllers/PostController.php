@@ -89,6 +89,14 @@ class PostController extends Controller
         return redirect('/posts')->with('success', 'Post Berhasil dibuat');
     }
 
+    public function createThumbnail($path, $width, $height)
+    {
+        $img = Image::make($path)->resize($width, $height, function ($constraint) {
+            $constraint->aspectRatio();
+        });
+        $img->save($path);
+    }
+
     /**
      * Display the specified resource.
      *

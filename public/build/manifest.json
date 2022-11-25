@@ -7,9 +7,8 @@
       "assets/app.60f9220d.css"
     ]
   },
-  "resources/sass/app.scss": {
+  "resources/js/app.css": {
     "file": "assets/app.60f9220d.css",
-    "src": "resources/sass/app.scss",
-    "isEntry": true
+    "src": "resources/js/app.css"
   }
 }
