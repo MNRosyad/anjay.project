@@ -7,6 +7,20 @@ use App\Models\Post;
 
 class GalleryController extends Controller
 {
+    /**
+    * @OA\Get(
+        * path="/api/gallery",
+        * tags={"galleries"},
+        * summary="show image(s)",
+        * description="an API to fetch image(s) from database",
+        * operationId="picture",
+        * @OA\Response(
+        * response="default",
+        * description="successful operation"
+        * )
+    * )
+    */
+
     public function __construct()
     {
         $this->middleware('auth', ['except' => ['index', 'show']]);
