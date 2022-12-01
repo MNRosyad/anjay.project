@@ -15,7 +15,8 @@ class SendEmailController extends Controller
     {
         $data = $request->all();
         // dd($data);
-        dispatch(new SendMailJob($data));
+        // dispatch(new SendMailJob($data));
+        new SendMailJob($data);
         return
             redirect()->route('kirim-email')->with(
                 'status',
